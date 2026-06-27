@@ -1,11 +1,11 @@
-# Wazuh MCP Server
+# AI Detection Engineering Platform
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![MCP 2025-11-25](https://img.shields.io/badge/MCP-2025--11--25-green.svg)](https://modelcontextprotocol.io/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://github.com/gensecaihq/Wazuh-MCP-Server)
 
-**Talk to your SIEM.** Query alerts, hunt threats, check vulnerabilities, and trigger active responses across your entire Wazuh deployment — through natural conversation with any AI assistant.
+**An AI-driven detection-engineering platform for Wazuh.** Investigate alerts, hunt threats, tune false positives, edit and validate detection rules, and run Atomic Red Team validations across your Wazuh deployment — by talking to any AI assistant. Built as a Model Context Protocol (MCP) server.
 
 > **v4.2.1** | 48 security tools | Wazuh 4.8.0–4.14.4 | [Changelog](CHANGELOG.md)
 

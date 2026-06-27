@@ -3,15 +3,15 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "wazuh-mcp-server"
+name = "ai-detection-engineering-platform"
 version = "4.2.1"
-description = "Production-grade MCP remote server for Wazuh SIEM integration with SSE transport"
+description = "AI-driven detection-engineering platform for Wazuh — an MCP server for alert triage, false-positive rule tuning, and Atomic Red Team validation."
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
     {name = "Wazuh MCP Server Project", email = "info@wazuh-mcp-server.org"}
 ]
-keywords = ["wazuh", "security", "mcp", "sse", "siem", "remote-server"]
+keywords = ["wazuh", "security", "mcp", "siem", "detection-engineering", "atomic-red-team", "soc"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
