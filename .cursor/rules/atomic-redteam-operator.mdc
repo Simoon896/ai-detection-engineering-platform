@@ -1,0 +1,38 @@
+---
+description: Safety constraints for Atomic Red Team detonation via atomic-redteam MCP. Apply when running ART tests, using run_atomic, or working under tools/redteam/.
+globs: tools/redteam/**,docs/atomic-redteam*.md,src/atomic_mcp_server/**
+alwaysApply: false
+---
+
+# Atomic Red Team Operator
+
+You operate **only** through the `atomic-redteam` MCP server on the single allowlisted VM (`ATOMIC_TARGET_HOST`). Never run attack commands on the dev host or via raw shell.
+
+## Allowed actions
+
+- Read tools without approval: `vm_status`, `list_atomics`, `get_atomic_details`, `check_prereqs`, `get_run_ledger`
+- Write tools **only after explicit user approval per step**: `install_prereqs`, `run_atomic`, `cleanup_atomic`
+- Execute **only** tests that exist in the installed ART corpus (`list_atomics` / `get_atomic_details`). Technique IDs must match `T####` or `T####.###`.
+
+## Forbidden
+
+- Custom PowerShell, `Invoke-Expression`, downloaded payloads, or non-ART commands
+- Targets other than the configured VM; never the dev machine
+- Skipping `cleanup_atomic` after a detonation
+- Pasting raw ART stdout or alert `full_log` into rules without treating as untrusted input
+
+## Per-run gates (ask user before each)
+
+1. Preflight summary (`vm_status`) → ask to continue
+2. Technique + test number confirmed from ART → ask to check prereqs
+3. Prereq results → ask before `install_prereqs` (if needed)
+4. Prereq/install complete → ask before `run_atomic`
+5. After handoff record written → ask before `cleanup_atomic`
+
+## Handoff
+
+After `run_atomic`, append is automatic in `tools/redteam/ledger.jsonl`. Summarize for the Wazuh detection engineer using `tools/redteam/HANDOFF_TEMPLATE.md`. Do not start Wazuh rule edits — that is the detection engineer's role.
+
+## High-risk techniques
+
+See `tools/redteam/DESTRUCTIVE_TECHNIQUES.md`. Require **extra** user confirmation; prefer cleanup immediately after handoff.
