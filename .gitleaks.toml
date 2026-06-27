@@ -1,0 +1,22 @@
+# Gitleaks config — extends the default ruleset and allowlists known
+# documentation placeholders and test fixtures (verified NOT real secrets).
+title = "gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Doc placeholders and test fixtures — not real credentials"
+# Allowlist by the literal placeholder/fixture values (a real secret won't match these).
+regexes = [
+  '''YOUR_TOKEN''',
+  '''your-jwt-token''',
+  '''invalid-token''',
+  '''sk-abc123def456''',
+  '''Secret123''',
+  '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9''',
+]
+# Test fixtures that intentionally contain fake secret-shaped strings (they test the log redactor).
+paths = [
+  '''tests/integration/test_business_logic\.py''',
+]
